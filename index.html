@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalha de Dragões🐉</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+     <header>
+        <h1>🐉Batalha de Dragões🐉</h1>
+        <h3>Arraste os dragões para a arena e veja quem vencerá!</h3>
+     </header>
+    <!------------>
+
+
+    <!--- Main --->
+     <main>
+        <div class="arena-container">
+            <div class="droppable-area" id="arena-1">
+                <h2>Arena 1</h2>
+                <div class="droppable-slot" data-order="1"></div>
+            </div>
+
+            <div class="controls">
+                <button class="luta-btn" onclick="lutar()">Lutar!</button>
+                <div id="log-container">
+                    <strong>Log de batalha</strong>
+                    <div id="log"></div>
+                </div>
+                <button class="reset-btn" onclick="resetar()">Resetar</button>
+            </div>
+
+            <div class="droppable-area" id="arena-2">
+                <h2>Arena 2</h2>
+                <div class="droppable-slot" data-order="2"></div>
+            </div>
+        </div>
+
+        <!-- Seção Cards -->
+         <section class="dragao-select">
+            <h2>Escolha seu dragão</h2>
+
+            <div class="tabs">
+                <button class="tablink active" onclick="openTab(event, 'tab1')">Dragões míticos</button>
+                <button class="tablink" onclick="openTab(event, 'tab2')">Dragões lendários</button>
+            </div>
+
+            <div id="tab1" class="tab-content" style="display: block;">
+                <!--card 1-->
+                <div class="card-elementos">
+                    <div class="card" draggable="true" data-name="Vermithrax" data-attack="90" data-defense="70">
+                        <div class="card-header">
+                            <span class="nome-dragao">Vermithrax</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Vermithrax" src="Drags-mitic/Vermithrax.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">90</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">70</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                 <!--card 2-->
+                    <div class="card" draggable="true" data-name="Krynn" data-attack="60" data-defense="100">
+                        <div class="card-header">
+                            <span class="nome-dragao">Krynn</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Krynn" src="Drags-mitic/Krynn.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">60</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">100</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--Card 3-->
+                    <div class="card" draggable="true" data-name="Nythra" data-attack="80" data-defense="85">
+                        <div class="card-header">
+                            <span class="nome-dragao">Nythra</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Nythra" src="Drags-mitic/Nythra.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">80</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">85</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--Card 4-->
+                    <div class="card" draggable="true" data-name="Serephion" data-attack="95" data-defense="60">
+                        <div class="card-header">
+                            <span class="nome-dragao">Serephion</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Serephion" src="Drags-mitic/Serephion.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">95</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">60</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--Card 5-->
+                    <div class="card" draggable="true" data-name="Gorgath" data-attack="85" data-defense="90">
+                        <div class="card-header">
+                            <span class="nome-dragao">Gorgath</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Gorgath" src="Drags-mitic/Gorgath.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">85</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                 <!--Card 6-->
+                    <div class="card" draggable="true" data-name="Aeroz" data-attack="75" data-defense="75">
+                        <div class="card-header">
+                            <span class="nome-dragao">Aeroz</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Aeroz" src="Drags-mitic/Aeroz.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">75</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">75</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--Card 7-->
+                    <div class="card" draggable="true" data-name="Solaris" data-attack="95" data-defense="65">
+                        <div class="card-header">
+                            <span class="nome-dragao">Solaris</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Solaris" src="Drags-mitic/Solaris.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">95</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">65</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--Card 8-->
+                    <div class="card" draggable="true" data-name="Nocturn" data-attack="70" data-defense="90">
+                        <div class="card-header">
+                            <span class="nome-dragao">Nocturn</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Nocturn" src="Drags-mitic/Nocturn.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">70</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">90</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Aba lendarios-->
+            <div id="tab2" class="tab-content">
+                <div class="card-elementos">
+                 <!--Card 9-->
+                    <div class="card" draggable="true" data-name="Ignis" data-attack="110" data-defense="50">
+                        <div class="card-header">
+                            <span class="nome-dragao">Ignis</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Ignis" src="Drags-lenda/Ignis.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">110</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">50</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--Card 10-->
+                    <div class="card" draggable="true" data-name="Azzura" data-attack="80" data-defense="120">
+                        <div class="card-header">
+                            <span class="nome-dragao">Azzura</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Azzura" src="Drags-lenda/Azzura.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">80</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">120</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--Card 11-->
+                    <div class="card" draggable="true" data-name="Thal'Kor" data-attack="90" data-defense="100">
+                        <div class="card-header">
+                            <span class="nome-dragao">Thal'Kor</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Thal'Kor" src="Drags-lenda/Thal'Kor.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">90</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">70</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--Card 12-->
+                    <div class="card" draggable="true" data-name="Glimmer" data-attack="120" data-defense="145">
+                        <div class="card-header">
+                            <span class="nome-dragao">Glimmer</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Glimmer" src="Drags-lenda/Glimmer.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">120</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">145</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--Card 13-->
+                    <div class="card" draggable="true" data-name="Pyroth" data-attack="90" data-defense="140">
+                        <div class="card-header">
+                            <span class="nome-dragao">Pyroth</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Pyroth" src="Drags-lenda/Pyroth.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">90</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">140</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--Card 14-->
+                    <div class="card" draggable="true" data-name="Thundrak" data-attack="110" data-defense="100">
+                        <div class="card-header">
+                            <span class="nome-dragao">Thundrak</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Thundrak" src="Drags-lenda/Thundrak.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">110</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">100</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--Card 15-->
+                    <div class="card" draggable="true" data-name="Umbrath" data-attack="80" data-defense="150">
+                        <div class="card-header">
+                            <span class="nome-dragao">Umbrath</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Umbrath" src="Drags-lenda/Umbrath.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">80</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">150</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                 <!--Card 16-->
+                    <div class="card" draggable="true" data-name="Verdantheon" data-attack="90" data-defense="125">
+                        <div class="card-header">
+                            <span class="nome-dragao">Verdantheon</span>
+                        </div>
+                        <div class="card-body">
+                            <img alt="Verdantheon" src="Drags-lenda/Verdantheon.jpg">
+                            <div class="atributos">
+                                <div class="atributo">
+                                    <span class="label">Ataque:</span>
+                                    <span class="value ataque">90</span>
+                                </div>
+                                <div class="atributo">
+                                    <span class="label">Defesa:</span>
+                                    <span class="value defesa">125</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+         </section>
+        <!--------------->
+     </main>
+    <!------------>
+
+    <footer>
+        <p>&copy;Batalha de Cards - @Caamano-01</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

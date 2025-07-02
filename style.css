@@ -1,0 +1,419 @@
+/* ---------- GERAL ---------- */
+body {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-color: rgb(63, 42, 27); /* cor de fundo */
+    color: rgb(251, 227, 179); /* cor padrão do texto */ 
+}
+
+
+/* --------- HEADER --------- */
+header {
+    background-color: rgb(92, 58, 33);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 2px solid rgb(155, 66, 25);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: rgb(255, 224, 102);
+    text-shadow: 2px 2px 4px #00000080;
+}
+
+header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+
+/* ---------- MAIN ---------- */
+main {
+    padding: 20px;
+    margin: 5px auto;
+    background-color: rgb(74, 52, 36);
+    box-shadow: 0 0 15px #00000080;
+}
+/* arenas */
+.arena-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    background-color: rgb(106, 74, 48);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px #00000080;
+}
+
+.droppable-area {
+    background-color: rgb(85, 62, 46);
+    border: 3px dashed rgb(155, 66, 25);
+    border-radius: 10px;
+    width: 250px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    box-shadow: inset 0 0 8px #00000080;
+}
+
+.droppable-area h2 {
+    color: rgb(255, 224, 102);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.droppable-slot { /* para onde o card será arrastado*/
+    min-width: 150px;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.droppable-slot .card { /* estilo do card arrastado pro slot*/
+    margin: 0;
+    min-width: 150px;
+    min-height: 200px;
+}
+/* Botões */
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.luta-btn, .reset-btn {
+    background-color: rgb(226, 59, 101);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2 ease;
+    box-shadow: 0 4px 8px #00000080;
+}
+
+.luta-btn:hover, .reset-btn:hover {
+    background-color: rgb(255, 82, 138);
+    transform: translateY(-2px);
+}
+
+.reset-btn {
+    background-color: rgb(83, 73, 214);
+}
+
+.reset-btn:hover {
+    background-color: rgb(106, 96, 224);
+}
+/* Log */
+#log-container {
+    background-color: rgb(44, 30, 20);
+    padding: 15px;
+    width: 250px;
+    border: 2px solid rgb(155, 66, 25);
+    text-align: left;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px #00000080;
+}
+
+#log {
+    background-color: rgb(62, 45, 33);
+    color: white;
+    margin-top: 10px;
+    padding: 10px;
+    height: 150px;
+    overflow-y: auto;
+    font-size: 0.9em;
+    border-radius: 5px;
+    border: 1px solid rgb(92, 58, 33);
+}
+
+#log p {
+    margin: 3px 0;
+}
+
+/* Seção de dragões (cards) */
+.dragao-select h2 {
+    text-align: center;
+    color: rgb(255, 224, 102);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    font-size: 2em;
+    text-shadow: 1px 1px 3px #00000090;
+}
+
+.card-elementos {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 15px;
+    background-color: rgb(92, 58, 33);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #00000090;
+    min-height: 250px;
+}
+
+.card {
+    background-color: rgb(251, 227, 179);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px #00000090;
+    overflow: hidden;
+    max-width: calc(100% / 8 - 15px);
+    margin: 0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: grab;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px #000000a9;
+}
+
+.card-header {
+    background-color: rgb(155, 66, 25);
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    padding: 8px;
+    font-size: 1em;
+}
+
+.card-body {
+    text-align: center;
+    padding: 10px 5px;
+}
+
+img {
+    max-width: 90%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid rgb(204, 204, 204);
+}
+
+.atributos {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 5px;
+}
+
+.atributo {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(230, 211, 168);
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.label {
+    font-weight: bold;
+    color: rgb(68, 68, 68);
+}
+
+.value {
+    padding: 2px 6px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    min-width: 25px;
+    text-align: center;
+}
+
+.ataque {
+    background-color: rgb(211, 30, 30);
+}
+
+.defesa {
+    background-color: rgb(89, 214, 73);
+}
+
+/* Navegar por abas */
+.tabs {
+  display: flex;
+  margin-bottom: 0;
+  border-bottom: 2px solid rgb(155, 66, 25);
+}
+
+.tablink {
+  background-color: rgb(155, 66, 25);
+  color: rgb(251, 227, 179);
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 8px 8px 0 0;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.tablink:hover {
+  background-color: rgb(184, 84, 44);
+}
+
+.tablink.active {
+  background-color: rgb(209, 107, 61);
+  box-shadow: inset 0 3px 8px #00000033;
+}
+
+.tab-content {
+  display: none;
+  padding: 1rem;
+  border: 1px solid rgb(155, 66, 25); 
+  border-top: none; 
+  background-color: rgb(92, 58, 33); 
+  border-radius: 0 0 10px 10px;
+  min-height: 300px;
+}
+
+/* Animação para o vencedor */
+@keyframes brilhoVencedor {
+  0% { transform: scale(1); box-shadow: 0 0 10px gold; }
+  50% { transform: scale(1.05); box-shadow: 0 0 20px gold; }
+  100% { transform: scale(1); box-shadow: 0 0 10px gold; }
+}
+
+.vencedor {
+  animation: brilhoVencedor 1s ease infinite;
+  border: 3px solid gold;
+  border-radius: 10px;
+}
+
+footer {
+    background-color: rgb(92, 58, 33);
+    font-size: 1.1em;
+    text-align: center;
+    padding: 8px;
+    border-top: 2px solid rgb(155, 66, 25);
+}
+
+
+
+
+
+/*------- Responsividade --------*/
+/* -------------------- RESPONSIVO -------------------- */
+
+/* Telas menores que 1024px (notebooks pequenos e tablets em paisagem) */
+@media (max-width: 1024px) {
+  .arena-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .droppable-area {
+    width: 220px;
+    height: 320px;
+  }
+
+  .controls {
+    order: 3;
+    margin-top: 15px;
+  }
+
+  .card-elementos {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card {
+    max-width: calc(100% / 4 - 10px); /* mostrar mais cards na linha */
+  }
+}
+
+/* Telas menores que 768px (tablets) */
+@media (max-width: 768px) {
+  .arena-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .droppable-area {
+    width: 80%;
+    max-width: 300px;
+    height: 300px;
+    margin-bottom: 15px;
+  }
+
+  .controls {
+    width: 90%;
+  }
+
+  .card-elementos {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .card {
+    max-width: calc(50% - 10px);
+  }
+
+  header h1 {
+    font-size: 2rem;
+  }
+
+  header h3 {
+    font-size: 1rem;
+  }
+
+  .luta-btn, .reset-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+  }
+
+  #log-container {
+    width: 90%;
+  }
+}
+
+/* Telas menores que 480px (celulares) */
+@media (max-width: 480px) {
+  main {
+    padding: 10px;
+  }
+
+  .droppable-area {
+    width: 95%;
+    height: auto;
+  }
+
+  .card-elementos {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .card {
+    max-width: 90%;
+  }
+
+  .luta-btn, .reset-btn {
+    padding: 8px 15px;
+    font-size: 0.9em;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+  }
+
+  header h3 {
+    font-size: 0.9rem;
+  }
+
+  #log-container {
+    width: 95%;
+  }
+
+  #log {
+    font-size: 0.85em;
+  }
+}
