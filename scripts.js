@@ -179,3 +179,33 @@ function openTab(evt, tabId) {
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".tablink").click();
 });
+
+
+
+let startY = null;
+
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('touchstart', e => {
+    if (e.touches.length === 1) {
+      startY = e.touches[0].clientY;
+    }
+  });
+
+  card.addEventListener('touchmove', e => {
+    if (e.touches.length === 1 && startY !== null) {
+      const currentY = e.touches[0].clientY;
+      const deltaY = startY - currentY;
+
+      // Se arrastar para cima (deltaY > 0), faz scroll para cima
+      if (deltaY > 0) {
+        window.scrollBy(0, -deltaY * 0.5); // ajuste 0.5 para mais ou menos sensibilidade
+      }
+
+      startY = currentY; // atualiza para o próximo movimento
+    }
+  });
+
+  card.addEventListener('touchend', () => {
+    startY = null;
+  });
+});
