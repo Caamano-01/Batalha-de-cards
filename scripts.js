@@ -60,6 +60,9 @@ droppableAreas.forEach(slot => {
     clonedCard.setAttribute("data-attack", dragData.attack);
     clonedCard.setAttribute("data-defense", dragData.defense);
 
+    // Remove a classe 'vencedor' se o card clonado a tiver
+    clonedCard.classList.remove('vencedor'); //
+
     slot.appendChild(clonedCard);
     adicionarLog(`${dragData.name} foi posicionado na Arena ${slot.dataset.order}.`);
 
@@ -96,46 +99,67 @@ function lutar() {
 
   adicionarLog("-- INÍCIO DA BATALHA! --");
 
-  let vida1 = 100;
-  let vida2 = 100;
+  let vida1 = dragonArena1.defense;
+  let vida2 = dragonArena2.defense;
+  let rodada = 1;
 
   adicionarLog(`${dragonArena1.name} (A:${dragonArena1.attack} D:${dragonArena1.defense}) vs ${dragonArena2.name} (A:${dragonArena2.attack} D:${dragonArena2.defense})`);
 
-  for (let i = 0; i < 5; i++) {
-    if (vida1 <= 0 || vida2 <= 0) break;
-
-    const dano1 = Math.max(0, dragonArena1.attack);
-    const dano2 = Math.max(0, dragonArena2.attack);
-
-    vida2 -= dano1;
-    vida1 -= dano2;
-
-    adicionarLog(`Rodada ${i + 1}:`);
-    adicionarLog(`${dragonArena1.name} atacou ${dragonArena2.name} causando ${dano1} de dano. Vida ${dragonArena2.name}: ${Math.max(0, vida2)}`);
-    adicionarLog(`${dragonArena2.name} atacou ${dragonArena1.name} causando ${dano2} de dano. Vida ${dragonArena1.name}: ${Math.max(0, vida1)}`);
-
-    if (vida1 <= 0 || vida2 <= 0) {
-      break; // Para imediatamente se algum morrer
+  function turno() {
+    if (rodada > 5 || vida1 <= 0 || vida2 <= 0) {
+      finalizarBatalha();
+      return;
     }
+
+    adicionarLog(`🎯 Rodada ${rodada}:`);
+
+    setTimeout(() => {
+      vida2 -= dragonArena1.attack;
+      adicionarLog(`${dragonArena1.name} atacou ${dragonArena2.name} causando ${dragonArena1.attack} de dano. Vida de ${dragonArena2.name}: ${Math.max(0, vida2)}`);
+
+      if (vida2 <= 0) {
+        finalizarBatalha();
+        return;
+      }
+
+      setTimeout(() => {
+        vida1 -= dragonArena2.attack;
+        adicionarLog(`${dragonArena2.name} atacou ${dragonArena1.name} causando ${dragonArena2.attack} de dano. Vida de ${dragonArena1.name}: ${Math.max(0, vida1)}`);
+
+        if (vida1 <= 0) {
+          finalizarBatalha();
+          return;
+        }
+
+        rodada++;
+        turno(); // próxima rodada
+      }, 1000); // tempo entre ataques
+    }, 1000); // tempo antes do primeiro ataque
   }
 
-  let vencedorSlot;
-  if (vida1 > vida2) {
-    adicionarLog(`🔥 ${dragonArena1.name} VENCEU A BATALHA! 🔥`);
-    vencedorSlot = document.querySelector('#arena-1 .droppable-slot .card');
-  } else if (vida2 > vida1) {
-    adicionarLog(`🔥 ${dragonArena2.name} VENCEU A BATALHA! 🔥`);
-    vencedorSlot = document.querySelector('#arena-2 .droppable-slot .card');
-  } else {
-    adicionarLog("A batalha terminou em EMPATE!");
-  }
+  turno(); // inicia o primeiro turno
 
-  if (vencedorSlot) {
-    vencedorSlot.classList.add('vencedor'); // adiciona classe para animar
-  }
+  function finalizarBatalha() {
+    let vencedorSlot;
 
-  adicionarLog("--- FIM DA BATALHA! ---");
+    if (vida1 > vida2) {
+      adicionarLog(`🔥 ${dragonArena1.name} VENCEU A BATALHA! 🔥`);
+      vencedorSlot = document.querySelector('#arena-1 .droppable-slot .card');
+    } else if (vida2 > vida1) {
+      adicionarLog(`🔥 ${dragonArena2.name} VENCEU A BATALHA! 🔥`);
+      vencedorSlot = document.querySelector('#arena-2 .droppable-slot .card');
+    } else {
+      adicionarLog("A batalha terminou em EMPATE!");
+    }
+
+    if (vencedorSlot) {
+      vencedorSlot.classList.add('vencedor');
+    }
+
+    adicionarLog("--- FIM DA BATALHA! ---");
+  }
 }
+
 
 
 
@@ -143,8 +167,12 @@ function lutar() {
 function resetar() {
   logDiv.innerHTML = "<p>Log limpo.</p>";
 
-  // Remove os cards dos slots
+  // Remove os cards dos slots e a classe 'vencedor'
   droppableAreas.forEach(slot => {
+    const cardInSlot = slot.querySelector(".card");
+    if (cardInSlot) {
+        cardInSlot.classList.remove('vencedor'); //
+    }
     slot.innerHTML = ""; // Limpa o conteúdo do slot
   });
 
